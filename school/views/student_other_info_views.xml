@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="view_student_other_info_form">
+      <field name="name">student_other_info.form</field>
+      <field name="model">student.other</field>
+      <field name="arch" type="xml">
+        <form>
+			<sheet>
+			<group>
+				<group>
+                    <field name="name"/>
+                    <field name="blood_group"/>
+				</group>
+			</group>
+			</sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_student_other_info_tree">
+      <field name="name">student_other_info.tree</field>
+      <field name="model">student.other</field>
+      <field name="arch" type="xml">
+          <tree>
+              <field name="name"/>
+          </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="action_student_other_info">
+      <field name="name">Student Other Information</field>
+      <field name="res_model">student.other</field>
+      <field name="view_mode">tree,form</field>
+	  <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Subject
+          </p>
+      </field>
+    </record>
+  </data>
+</odoo>

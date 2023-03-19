@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="view_student_form">
+      <field name="name">student.form</field>
+      <field name="model">student.student</field>
+      <field name="arch" type="xml">
+        <form>
+			<sheet>
+			<group>
+				<group>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+					 <field name="name"/>
+					 <field name="age"/>
+<!--					 <field name="gender"/>-->
+<!--					 <field name="register_no"/>-->
+					 <field name="student_class_id"/>
+<!--					 <field name="class_teacher_id"/>-->
+<!--					 <field name="subject_ids"  widget="many2many_tags"/>-->
+				</group>
+			</group>
+                <notebook>
+                    <page string="Subject">
+                        <field name="subject_ids"/>
+                    </page>
+                    <page string="Other Information">
+                        <group>
+                            <field name="blood_group"/>
+                            <field name="gender"/>
+                            <field name="register_no"/>
+                        </group>
+                    </page>
+                    <page string="Teachers">
+                        <field name="teacher_ids"/>
+                    </page>
+                </notebook>
+			</sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_student_tree">
+      <field name="name">student.tree</field>
+      <field name="model">student.student</field>
+      <field name="arch" type="xml">
+          <tree>
+              <field name="first_name"/>
+              <field name="last_name"/>
+              <field name="name"/>
+              <field name="age"/>
+              <field name="gender"/>
+              <field name="register_no"/>
+              <field name="student_class_id"/>
+          </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="action_student">
+      <field name="name">Student</field>
+      <field name="res_model">student.student</field>
+      <field name="view_mode">tree,form</field>
+	  <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Welcome to!!<br></br>
+              New Life
+          </p>
+      </field>
+    </record>
+      </data>
+</odoo>
