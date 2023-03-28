@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+       <!-- Form View-->
+        <record id="view_doctor_doctor_form" model="ir.ui.view">
+            <field name="name">doctor.doctor.form</field>
+            <field name="model">doctor.doctor</field>
+            <field name="arch" type="xml">
+                <form string="Doctor">
+                    <header>
+                        <field name="status"
+                               widget="statusbar"
+                               options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="age"/>
+                        </group>
+                        <group col="4">
+                            <field name="gender" required="1"/>
+                            <field name="date_of_birth" attrs="{'readonly': [('age', '&lt;', 18)], 'required': [('age', '&gt;=', 18)]}"/>
+                        </group>
+                        <notebook>
+                            <page string="Patient">
+                                <group>
+                                    <field name="patient_ids">
+                                        <tree editable="bottom">
+                                            <field name="patient_id"/>
+                                            <field name="fees"/>
+                                            <field name="medicine_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Personal">
+                                <group>
+                                    <field name="profession" widget="radio"/>
+                                    <field name="doctor_qualification" attrs="{'invisible': [('profession', '!=', 'doctor')]}"/>
+                                    <field name="nurse_qualification" attrs="{'invisible': [('profession', '!=', 'nurse')]}"/>
+                                </group>
+                            </page>
+                            <page string="Contact">
+                                <group>
+                                    <field name="phone"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--Tree Views-->
+        <record id="view_doctor_doctor_tree" model="ir.ui.view">
+            <field name="name">doctor.doctor.tree</field>
+            <field name="model">doctor.doctor</field>
+            <field name="arch" type="xml">
+                <tree string="Doctor">
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="gender"/>
+                    <field name="date_of_birth"/>
+                    <field name="phone"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_doctor_doctor" model="ir.actions.act_window">
+            <field name="name">Doctor</field>
+            <field name="res_model">doctor.doctor</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--Menus-->
+        <menuitem id="hospital_menu" name="Hospital" sequence="1"/>
+        <menuitem id="doctor_menu"
+                  name="Doctor"
+                  sequence="2"
+                  action="action_doctor_doctor"
+                  parent="hospital_menu"/>
+
+    </data>
+</odoo>
